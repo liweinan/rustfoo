@@ -1,4 +1,14 @@
 fn main() {
+    foo();
+}
+
+fn no_dangle() -> String {
+    let s = String::from("sss");
+    s
+}
+
+fn foo() {
+
     println!("Hello World!");
     let s = String::from("hello world");
     let _hello = &s[0..5];
@@ -54,9 +64,4 @@ fn main() {
 
     println!("Alice says: {}", alice);
     println!("Bob says: {}", bob);
-}
-
-fn no_dangle() -> String {
-    let s = String::from("sss");
-    s
 }
