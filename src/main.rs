@@ -1,36 +1,40 @@
 fn main() {
-    let bar = barbar();
+    let _bar = barbar();
     one_for_all();
     play_with_point();
     foo();
-
 }
 
 fn one_for_all() {
-let bar = Bar(1,2);
-bar.oneForAll();
+    let bar = Bar(1, 2);
+    bar.one_for_all();
 }
 
 trait OneForAll {
-    fn oneForAll(&self) {
+    fn one_for_all(&self) {
         println!("ONE FOR ALL!");
+    }
+
+    fn to_bar(&self) -> Bar {
+        Bar(2, 2)
     }
 }
 
-impl OneForAll for Bar {
-}
+impl OneForAll for Bar {}
 
 fn barbar() -> impl OneForAll {
     Bar(42, 42)
 }
 
+#[derive(Debug)]
+struct Bar(i32, i32);
+
 fn play_with_point() {
-    let p1 = Point {x:5, y:10.4};
-    let p2 = Point {x:"Hello", y: 'c'};
+    let p1 = Point { x: 5, y: 10.4 };
+    let p2 = Point { x: "Hello", y: 'c' };
     let p3 = p1.mixup(p2);
     println!("{:?}", p3);
 }
-
 
 #[derive(Debug)]
 struct Point<T, U> {
@@ -53,7 +57,6 @@ fn no_dangle() -> String {
 }
 
 fn foo() {
-
     println!("Hello World!");
     let s = String::from("hello world");
     let _hello = &s[0..5];
@@ -95,22 +98,4 @@ fn foo() {
         // Insert a string at the end of string
         string.push_str(", ");
     }
-}
-
-struct Foo {
-    x: i32,
-    s: String,
-    opt: Option<i32>,
-}
-
-struct Bar(i32, i32);
-
-fn play_with_struct() -> Foo {
-    let d = Foo {
-        x: 4,
-        s: String::from("hello world"),
-        opt: None,
-    };
-
-    return d;
 }
