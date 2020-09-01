@@ -1,6 +1,27 @@
 fn main() {
+    let bar = barbar();
+    one_for_all();
     play_with_point();
     foo();
+
+}
+
+fn one_for_all() {
+let bar = Bar(1,2);
+bar.oneForAll();
+}
+
+trait OneForAll {
+    fn oneForAll(&self) {
+        println!("ONE FOR ALL!");
+    }
+}
+
+impl OneForAll for Bar {
+}
+
+fn barbar() -> impl OneForAll {
+    Bar(42, 42)
 }
 
 fn play_with_point() {
