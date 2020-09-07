@@ -1,8 +1,21 @@
+
+use std::collections::HashMap;
+
 fn main() {
+    hhash();
+    trytry();
     let _bar = barbar();
     one_for_all();
     play_with_point();
     foo();
+}
+
+fn hhash() -> HashMap<i8, i8> {
+    HashMap::new()
+}
+
+fn trytry() -> Option<i32> {
+    Some(42)
 }
 
 fn one_for_all() {
