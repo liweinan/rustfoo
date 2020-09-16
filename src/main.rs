@@ -1,8 +1,36 @@
+use std::thread;
+
 fn main() {
-    let _bar = barbar();
-    one_for_all();
-    play_with_point();
-    foo();
+    // unsafe_call();
+
+
+    // let _bar = barbar();
+    // one_for_all();
+    // play_with_point();
+    // foo();
+}
+
+// fn unsafe_call() {
+//     let mut str = String::from("hello");
+//
+//     let mut pool = vec![];
+//
+//
+//     for _ in 0..2 {
+//         pool.push(thread::spawn(move || {
+//             mut_fn(&str);
+//         }));
+//     }
+//
+//     for t in pool {
+//         let _ = t.join();
+//     }
+//
+//     println!("{:?}", str);
+// }
+
+fn mut_fn(val: &mut String) {
+    val.push_str(".");
 }
 
 fn one_for_all() {
