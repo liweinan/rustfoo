@@ -1,36 +1,21 @@
-use std::thread;
+
+use std::collections::HashMap;
 
 fn main() {
-    // unsafe_call();
-
-
-    // let _bar = barbar();
-    // one_for_all();
-    // play_with_point();
-    // foo();
+    hhash();
+    trytry();
+    let _bar = barbar();
+    one_for_all();
+    play_with_point();
+    foo();
 }
 
-// fn unsafe_call() {
-//     let mut str = String::from("hello");
-//
-//     let mut pool = vec![];
-//
-//
-//     for _ in 0..2 {
-//         pool.push(thread::spawn(move || {
-//             mut_fn(&str);
-//         }));
-//     }
-//
-//     for t in pool {
-//         let _ = t.join();
-//     }
-//
-//     println!("{:?}", str);
-// }
+fn hhash() -> HashMap<i8, i8> {
+    HashMap::new()
+}
 
-fn mut_fn(val: &mut String) {
-    val.push_str(".");
+fn trytry() -> Option<i32> {
+    Some(42)
 }
 
 fn one_for_all() {
