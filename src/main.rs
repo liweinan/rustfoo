@@ -2,12 +2,25 @@
 use std::collections::HashMap;
 
 fn main() {
+    use_coerce_static();
     hhash();
     trytry();
     let _bar = barbar();
     one_for_all();
     play_with_point();
     foo();
+}
+
+
+static NUM: i32 = 18;
+
+fn coerce_static<'a>(_: &'a i32) -> &'a i32 {
+    &NUM
+}
+
+fn use_coerce_static() {
+    let x = 42;
+    println!("coerced_static: {}", coerce_static(&x));
 }
 
 fn hhash() -> HashMap<i8, i8> {
