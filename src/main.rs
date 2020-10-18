@@ -2,6 +2,8 @@
 use std::collections::HashMap;
 
 fn main() {
+     println!("{:?}", create_a_new_struct());
+
     use_coerce_static();
     hhash();
     trytry();
@@ -11,6 +13,21 @@ fn main() {
     foo();
 }
 
+
+fn create_a_new_struct() -> AssocStruct {
+    AssocStruct::new()
+}
+
+#[derive(Debug)]
+struct AssocStruct {
+    foo: i32
+}
+
+impl AssocStruct {
+    pub fn new() -> AssocStruct {
+        AssocStruct { foo: 42 }
+    }
+}
 
 static NUM: i32 = 18;
 
