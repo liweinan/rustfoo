@@ -1,8 +1,9 @@
-
 use std::collections::HashMap;
 
 fn main() {
-     println!("{:?}", create_a_new_struct());
+    mov_struct_self();
+
+    println!("{:?}", create_a_new_struct());
 
     use_coerce_static();
     hhash();
@@ -13,6 +14,30 @@ fn main() {
     foo();
 }
 
+fn mov_struct_self() {
+    let mss = MovSelfStruct { val: "Hello, world".into() };
+
+    mss.do_the_move();
+    // FAIL: because do_the_move() moved self
+    // `mss` moved due to this method call
+    // mss.mutate();
+}
+
+struct MovSelfStruct {
+    val: String,
+}
+
+impl MovSelfStruct {
+    // Change `self` to `&self` can avoid self moving.
+    fn do_the_move(self) {
+        // do nothing
+        // but self is moved here.
+    }
+
+    fn mutate(&self) {
+        println!("{:?}", self.val);
+    }
+}
 
 fn create_a_new_struct() -> AssocStruct {
     AssocStruct::new()
