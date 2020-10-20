@@ -24,6 +24,7 @@ fn mov_struct_self() {
 }
 
 struct MovSelfStruct {
+    #[allow(dead_code)]
     val: String,
 }
 
@@ -34,6 +35,7 @@ impl MovSelfStruct {
         // but self is moved here.
     }
 
+    #[allow(dead_code)]
     fn mutate(&self) {
         println!("{:?}", self.val);
     }
