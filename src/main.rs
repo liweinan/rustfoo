@@ -17,10 +17,12 @@ fn main() {
 fn mov_struct_self() {
     let mss = MovSelfStruct { val: "Hello, world".into() };
 
-    mss.do_the_move();
+    // UPDATE: move out
+    let mss2 = mss.do_the_move();
     // FAIL: because do_the_move() moved self
     // `mss` moved due to this method call
-    // mss.mutate();
+    // use the moved var
+    mss2.mutate();
 }
 
 struct MovSelfStruct {
@@ -30,9 +32,11 @@ struct MovSelfStruct {
 
 impl MovSelfStruct {
     // Change `self` to `&self` can avoid self moving.
-    fn do_the_move(self) {
+    // UPDATE: move back
+    fn do_the_move(self) -> MovSelfStruct {
         // do nothing
         // but self is moved here.
+        self
     }
 
     #[allow(dead_code)]
