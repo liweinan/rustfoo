@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 fn main() {
+    generic();
     mov_struct_self();
 
     println!("{:?}", create_a_new_struct());
@@ -12,6 +13,21 @@ fn main() {
     one_for_all();
     play_with_point();
     foo();
+}
+
+fn generic() {
+    let a = GenericPoint { x: 100, y: 20 };
+    let b = GenericPoint { x: 1.0, y: 2.2 };
+    // mismatched types
+    // let c = GenericPoint { x: 2.0, y: 2 };
+    println!("{:?}", a);
+    println!("{:?}", b);
+}
+
+#[derive(Debug)]
+struct GenericPoint<T> {
+    x: T,
+    y: T,
 }
 
 fn mov_struct_self() {
