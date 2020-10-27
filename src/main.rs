@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 
 fn main() {
+    range_two_dots();
+    use_gfunc();
     generic();
     mov_struct_self();
 
@@ -15,6 +17,23 @@ fn main() {
     foo();
 }
 
+fn range_two_dots() {
+    println!("{:?}", 1..10);
+    println!("{:?}", (..6));
+    println!("{:?}", 4..);
+    let mut v = vec![1, 2, 3];
+    let u: Vec<_> = v.drain(1..).collect();
+    println!("{:?}", u);
+}
+
+fn use_gfunc() {
+    println!("{:?}", gfunc(2, 3));
+}
+
+fn gfunc<T: std::ops::Add<Output=T>>(a: T, b: T) -> T {
+    a + b
+}
+
 fn generic() {
     let a = GenericPoint { x: 100, y: 20 };
     let b = GenericPoint { x: 1.0, y: 2.2 };
@@ -25,6 +44,7 @@ fn generic() {
 }
 
 #[derive(Debug)]
+// abstract / placeholder type
 struct GenericPoint<T> {
     x: T,
     y: T,
