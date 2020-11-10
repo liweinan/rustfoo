@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 fn main() {
+    intointo();
     range_two_dots();
     use_gfunc();
     generic();
@@ -16,6 +17,12 @@ fn main() {
     play_with_point();
     foo();
 }
+
+fn intointo() {
+    let s : String = "Hello, world!".into();
+    println!("{:?}", s);
+}
+
 
 fn range_two_dots() {
     println!("{:?}", 1..10);
