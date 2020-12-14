@@ -1,25 +1,79 @@
 use std::collections::HashMap;
 
 fn main() {
-    intointo();
-    range_two_dots();
-    use_gfunc();
-    generic();
-    mov_struct_self();
+    regexp();
+    // sort_median();
+    // intointo();
+    // range_two_dots();
+    // use_gfunc();
+    // generic();
+    // mov_struct_self();
+    //
+    // println!("{:?}", create_a_new_struct());
+    //
+    // use_coerce_static();
+    // hhash();
+    // trytry();
+    // let _bar = barbar();
+    // one_for_all();
+    // play_with_point();
+    // foo();
+}
 
-    println!("{:?}", create_a_new_struct());
+fn regexp() {
+    println!("{:?}", is_match("ab".into(), ".*".into()));
+    println!("{:?}", is_match("aa".into(), "a".into()));
+    println!("{:?}", is_match("aa".into(), "a*".into()));
+}
 
-    use_coerce_static();
-    hhash();
-    trytry();
-    let _bar = barbar();
-    one_for_all();
-    play_with_point();
-    foo();
+pub fn is_match(s: String, p: String) -> bool {
+    _is_match(&s, &p)
+}
+
+fn _is_match(s: &String, p: &String) -> bool {
+    if p.is_empty() {
+        return s.is_empty();
+    }
+
+    let first_match = !s.is_empty() && (s.chars().nth(0) == p.chars().nth(0) || p.chars().nth(0).unwrap() == '.');
+
+    return if p.len() >= 2 && p.chars().nth(1).unwrap() == '*' {
+        _is_match(s, &String::from(&p[2..])) || (first_match && _is_match(&String::from(&s[1..]), p))
+    } else {
+        first_match && _is_match(&String::from(&s[1..]), &String::from(&p[1..]))
+    };
+}
+
+fn sort_median() {
+    let vec1 = vec![1, 5, 10, 2, 15];
+    let vec2 = vec![1, 5, 10, 2, 15];
+    find_median_sorted_arrays(vec1, vec2);
+}
+
+pub fn find_median_sorted_arrays(nums1: Vec<i32>, nums2: Vec<i32>) -> f64 {
+    let mut cons = [&nums1[..], &nums2[..]].concat();
+    cons.sort_by(|a, b| a.partial_cmp(b).unwrap());
+    println!("{:?}", cons);
+
+    let size = cons.len();
+
+    return if size == 1 {
+        cons[0] as f64
+    } else if size == 2 {
+        (cons[0] + cons[1]) as f64 / 2.0
+    } else if size == 3 {
+        cons[1] as f64
+    } else if size % 2 == 1 {
+        cons[size / 2] as f64
+    } else if size % 2 == 0 {
+        (cons[size / 2] + cons[size / 2 - 1]) as f64 / 2.0
+    } else {
+        42.0
+    };
 }
 
 fn intointo() {
-    let s : String = "Hello, world!".into();
+    let s: String = "Hello, world!".into();
     println!("{:?}", s);
 }
 
