@@ -1,7 +1,11 @@
+#![feature(assoc_char_funcs)]
+
 use std::collections::HashMap;
 
 fn main() {
-    regexp();
+    use_monotone_increasing_digits();
+    // use_monotone_increasing_digits();
+    // regexp();
     // sort_median();
     // intointo();
     // range_two_dots();
@@ -18,6 +22,102 @@ fn main() {
     // one_for_all();
     // play_with_point();
     // foo();
+}
+
+fn use_monotone_increasing_digits() {
+    println!("{:?}", monotone_increasing_digits(10));
+    println!("{:?}", monotone_increasing_digits(21));
+    println!("{:?}", monotone_increasing_digits(332));
+    println!("{:?}", monotone_increasing_digits(1234));
+    println!("{:?}", monotone_increasing_digits(528357107));
+    println!("{:?}", monotone_increasing_digits(526115566));
+    println!("{:?}", monotone_increasing_digits(882930776));
+}
+
+pub fn monotone_increasing_digits(n: i32) -> i32 {
+    let str_n = n.to_string();
+    let mut i = 1;
+    let mut chars: Vec<_> = str_n.chars().collect();
+    while i < str_n.len() && chars[i - 1] <= chars[i] {
+        i += 1;
+    }
+
+    if i < str_n.len() {
+        while i > 0 && chars[i - 1] > chars[i] {
+            // chars[i - 1] = char::from_u32(chars[i - 1] as u32 - 1).unwrap();
+            let m = chars[i - 1] as u8 - 1;
+            chars[i - 1] = m as char;
+            i -= 1;
+        }
+        for i in i + 1..str_n.len() {
+            chars[i] = '9';
+        }
+    }
+
+    let str: String = chars.iter().collect();
+    str.parse::<i32>().unwrap()
+}
+
+pub fn monotone_increasing_digits2(n: i32) -> i32 {
+    let mut r = 0;
+    for i in (0..=n).rev() {
+        // let (_r, ok) = monotone(i, i);
+        let (_r, ok) = monotone2(i);
+        if ok {
+            r = _r;
+            break;
+        }
+    }
+
+    r
+}
+
+pub fn monotone2(start_n: i32) -> (i32, bool) {
+    if start_n < 10 { return (start_n, true); }
+    if start_n == 10 { return (9, true); }
+
+    let mut current_n = start_n;
+
+    loop {
+        if current_n > 0 {
+            let mut current_digit = current_n % 10;
+            let mut next_digit = current_n / 10 % 10;
+
+            if current_digit >= next_digit {
+                if current_n / 100 == 0 {
+                    return (start_n, true);
+                } else {
+                    current_n = current_n / 10
+                };
+            } else {
+                return (-1, false);
+            }
+        } else {
+            return (start_n, true);
+        };
+    }
+}
+
+pub fn monotone(start_n: i32, current_n: i32) -> (i32, bool) {
+    if start_n < 10 { return (start_n, true); }
+    if start_n == 10 { return (9, true); }
+
+    return if current_n > 0 {
+        let current_digit = current_n % 10;
+        let next_digit = current_n / 10 % 10;
+
+        if current_digit >= next_digit {
+            return if current_n / 100 == 0 {
+                (start_n, true)
+            } else {
+                monotone(start_n, current_n / 10)
+            };
+        } else {
+            (-1, false)
+        }
+    } else {
+        (start_n, true)
+    };
 }
 
 fn regexp() {
