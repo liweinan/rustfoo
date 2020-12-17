@@ -4,24 +4,24 @@ use std::collections::HashMap;
 
 fn main() {
     use_monotone_increasing_digits();
-    // use_monotone_increasing_digits();
-    // regexp();
-    // sort_median();
-    // intointo();
-    // range_two_dots();
-    // use_gfunc();
-    // generic();
-    // mov_struct_self();
-    //
-    // println!("{:?}", create_a_new_struct());
-    //
-    // use_coerce_static();
-    // hhash();
-    // trytry();
-    // let _bar = barbar();
-    // one_for_all();
-    // play_with_point();
-    // foo();
+    use_monotone_increasing_digits();
+    regexp();
+    sort_median();
+    intointo();
+    range_two_dots();
+    use_gfunc();
+    generic();
+    mov_struct_self();
+
+    println!("{:?}", create_a_new_struct());
+
+    use_coerce_static();
+    hhash();
+    trytry();
+    let _bar = barbar();
+    one_for_all();
+    play_with_point();
+    foo();
 }
 
 fn use_monotone_increasing_digits() {
@@ -80,8 +80,8 @@ pub fn monotone2(start_n: i32) -> (i32, bool) {
 
     loop {
         if current_n > 0 {
-            let mut current_digit = current_n % 10;
-            let mut next_digit = current_n / 10 % 10;
+            let current_digit = current_n % 10;
+            let next_digit = current_n / 10 % 10;
 
             if current_digit >= next_digit {
                 if current_n / 100 == 0 {
