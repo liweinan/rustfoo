@@ -10,8 +10,10 @@ fn main() {
     let divisor2 = (-268_i32).div_euclid(60);
     println!("divisor2 is {}" , divisor2);
 
-    let temp_minutes: i32 = -268;
-    println!("divisor is {}" , temp_minutes.div_euclid(60));
+    let divisor3: i32 = -268;
+    println!("divisor3 is {}" , divisor3.div_euclid(60));
+
+    println!("divisor4 is {}" , (-268 as i32).div_euclid(60));
 
     use_monotone_increasing_digits();
     use_monotone_increasing_digits();
