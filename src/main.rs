@@ -3,25 +3,81 @@
 use std::collections::HashMap;
 
 fn main() {
+
+    let divisor = -(268_i32.div_euclid(60));
+    println!("divisor is {}" , divisor);
+
+    let divisor2 = (-268_i32).div_euclid(60);
+    println!("divisor2 is {}" , divisor2);
+
+    let temp_minutes: i32 = -268;
+    println!("divisor is {}" , temp_minutes.div_euclid(60));
+
+    use_is_ugly();
     use_monotone_increasing_digits();
-    // use_monotone_increasing_digits();
-    // regexp();
-    // sort_median();
-    // intointo();
-    // range_two_dots();
-    // use_gfunc();
-    // generic();
-    // mov_struct_self();
-    //
-    // println!("{:?}", create_a_new_struct());
-    //
-    // use_coerce_static();
-    // hhash();
-    // trytry();
-    // let _bar = barbar();
-    // one_for_all();
-    // play_with_point();
-    // foo();
+    use_monotone_increasing_digits();
+    regexp();
+    sort_median();
+    intointo();
+    range_two_dots();
+    use_gfunc();
+    generic();
+    mov_struct_self();
+
+    println!("{:?}", create_a_new_struct());
+
+    use_coerce_static();
+    hhash();
+    trytry();
+    let _bar = barbar();
+    one_for_all();
+    play_with_point();
+    foo();
+}
+
+pub fn use_is_ugly() {
+    println!("{:?}", is_ugly(0));
+    println!("{:?}", is_ugly(1));
+    println!("{:?}", is_ugly(6));
+    println!("{:?}", is_ugly(8));
+    println!("{:?}", is_ugly(14));
+}
+
+pub fn is_ugly(num: i32) -> bool {
+
+    if num == 0 {
+        return false;
+    }
+
+    if num == 1 {
+        return true;
+    }
+
+    let mut x = num;
+    let mut flag = true;
+
+    loop {
+        if x == 1 || x == 2 || x == 3 || x == 5 {
+            break;
+        }
+
+        if x % 2 != 0 && x % 3 != 0 && x % 5 != 0 {
+            flag = false;
+            break;
+        } else if x % 2 == 0 {
+            x /= 2;
+        } else if x % 3 == 0 {
+            x /= 3;
+        } else if x % 5 == 0 {
+            x /= 5;
+        }
+    }
+
+    if flag {
+        return true;
+    }
+
+    false
 }
 
 fn use_monotone_increasing_digits() {
