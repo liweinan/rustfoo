@@ -13,7 +13,6 @@ fn main() {
     let temp_minutes: i32 = -268;
     println!("divisor is {}" , temp_minutes.div_euclid(60));
 
-    use_is_ugly();
     use_monotone_increasing_digits();
     use_monotone_increasing_digits();
     regexp();
