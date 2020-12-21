@@ -35,51 +35,6 @@ fn main() {
     foo();
 }
 
-pub fn use_is_ugly() {
-    println!("{:?}", is_ugly(0));
-    println!("{:?}", is_ugly(1));
-    println!("{:?}", is_ugly(6));
-    println!("{:?}", is_ugly(8));
-    println!("{:?}", is_ugly(14));
-}
-
-pub fn is_ugly(num: i32) -> bool {
-
-    if num == 0 {
-        return false;
-    }
-
-    if num == 1 {
-        return true;
-    }
-
-    let mut x = num;
-    let mut flag = true;
-
-    loop {
-        if x == 1 || x == 2 || x == 3 || x == 5 {
-            break;
-        }
-
-        if x % 2 != 0 && x % 3 != 0 && x % 5 != 0 {
-            flag = false;
-            break;
-        } else if x % 2 == 0 {
-            x /= 2;
-        } else if x % 3 == 0 {
-            x /= 3;
-        } else if x % 5 == 0 {
-            x /= 5;
-        }
-    }
-
-    if flag {
-        return true;
-    }
-
-    false
-}
-
 fn use_monotone_increasing_digits() {
     println!("{:?}", monotone_increasing_digits(10));
     println!("{:?}", monotone_increasing_digits(21));
@@ -136,8 +91,8 @@ pub fn monotone2(start_n: i32) -> (i32, bool) {
 
     loop {
         if current_n > 0 {
-            let mut current_digit = current_n % 10;
-            let mut next_digit = current_n / 10 % 10;
+            let current_digit = current_n % 10;
+            let next_digit = current_n / 10 % 10;
 
             if current_digit >= next_digit {
                 if current_n / 100 == 0 {
