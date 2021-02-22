@@ -3,37 +3,70 @@
 use std::collections::HashMap;
 
 fn main() {
+    try_closures();
 
-    let divisor = -(268_i32.div_euclid(60));
-    println!("divisor is {}" , divisor);
+    // let divisor = -(268_i32.div_euclid(60));
+    // println!("divisor is {}" , divisor);
+    //
+    // let divisor2 = (-268_i32).div_euclid(60);
+    // println!("divisor2 is {}" , divisor2);
+    //
+    // let divisor3: i32 = -268;
+    // println!("divisor3 is {}" , divisor3.div_euclid(60));
+    //
+    // println!("divisor4 is {}" , (-268 as i32).div_euclid(60));
+    //
+    // use_monotone_increasing_digits();
+    // use_monotone_increasing_digits();
+    // regexp();
+    // sort_median();
+    // intointo();
+    // range_two_dots();
+    // use_gfunc();
+    // generic();
+    // mov_struct_self();
+    //
+    // println!("{:?}", create_a_new_struct());
+    //
+    // use_coerce_static();
+    // hhash();
+    // trytry();
+    // let _bar = barbar();
+    // one_for_all();
+    // play_with_point();
+    // foo();
+}
 
-    let divisor2 = (-268_i32).div_euclid(60);
-    println!("divisor2 is {}" , divisor2);
+fn try_closures() {
+    let immut_val = String::from("immut");
 
-    let divisor3: i32 = -268;
-    println!("divisor3 is {}" , divisor3.div_euclid(60));
+    let fn_closure = || {
+        println!("{}", immut_val.len());
+    };
 
-    println!("divisor4 is {}" , (-268 as i32).div_euclid(60));
+    call_fn(fn_closure);
+    call_fn(fn_closure);
+    call_fn(fn_closure);
 
-    use_monotone_increasing_digits();
-    use_monotone_increasing_digits();
-    regexp();
-    sort_median();
-    intointo();
-    range_two_dots();
-    use_gfunc();
-    generic();
-    mov_struct_self();
+    let to_move_val = String::from("moved_val");
+    let fn_once = || {
+        let moved_val = to_move_val;
+        println!("{}", moved_val.len());
+    };
 
-    println!("{:?}", create_a_new_struct());
+    call_fn_once(fn_once);
+    // call_fn_once(fn_once); note: closure cannot be moved more than once as it is not `Copy` due to moving the variable `to_move_val` out of its environment
+}
 
-    use_coerce_static();
-    hhash();
-    trytry();
-    let _bar = barbar();
-    one_for_all();
-    play_with_point();
-    foo();
+fn call_fn_once<F>(f: F)
+    where F: FnOnce(),
+{
+    f();
+}
+
+fn call_fn<F>(f: F)
+    where F: Fn(), {
+    f();
 }
 
 fn use_monotone_increasing_digits() {
